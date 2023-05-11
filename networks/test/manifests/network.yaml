@@ -1,0 +1,62 @@
+apiVersion: streams.network.edgefarm.io/v1alpha1
+kind: Network
+metadata:
+  name: test
+  namespace: accel
+spec:
+  compositeDeletePolicy: Foreground
+  parameters:
+    users:
+    
+      - name: default
+        limits:
+          payload: -1
+          data: -1
+          subscriptions: -1
+        permissions:
+          pub:
+            allow:
+            - "*.test.>"
+            - "fluppidu"
+            deny:
+            - "*.hello.>"
+            
+          sub:
+            allow:
+            - "mytest.>"
+            - "*.foo.*.bar.>"
+            deny:
+            - ".asdf.>"
+            - "sdfasdf"
+            
+    subNetworks:
+      - name: test
+        limits:
+          fileStorage: 1G
+          inMemoryStorage: 100M
+        tolerations: []
+        nodepoolSelector:
+          matchExpressions:
+            - key: "test"
+              operator: Exists
+            
+    streams:
+    
+      - name: mystream
+        type: Standard
+        subNetworkRef: test
+        config:
+          subjects:
+          - "*.asdf.>"
+          - "fluppidu"
+          
+          discard: Old
+          retention: Limits
+          storage: File
+          maxConsumers: -1
+          maxMsgSize: -1
+          maxMsgs: -1
+          maxMsgsPerSubject: -1
+          maxBytes: -1
+        
+    
