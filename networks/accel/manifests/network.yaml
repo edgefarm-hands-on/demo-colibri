@@ -7,7 +7,6 @@ spec:
   compositeDeletePolicy: Foreground
   parameters:
     users:
-    
       - name: publish
         limits:
           payload: -1
@@ -16,16 +15,14 @@ spec:
         permissions:
           pub:
             allow:
-            - *.accel
-            - $JS.API.CONSUMER.>
-            - $JS.ACK.>
+            - "*.accel"
+            - "$JS.API.CONSUMER.>"
+            - "$JS.ACK.>"
             deny: []
-            
           sub:
             allow:
-            - *.accel
+            - "*.accel"
             deny: []
-            
     subNetworks:
       - name: colibri
         limits:
@@ -36,16 +33,13 @@ spec:
           matchExpressions:
             - key: device-type-colibri
               operator: Exists
-            
     streams:
-    
       - name: accel-stream
         type: Standard
         subNetworkRef: colibri
         config:
           subjects:
           - accel
-          
           discard: Old
           retention: Limits
           storage: File
@@ -54,13 +48,9 @@ spec:
           maxMsgs: -1
           maxMsgsPerSubject: -1
           maxBytes: 104857599
-        
-    
       - name: aggregate
         type: Aggregate
-        
         config:
-          
           discard: Old
           retention: Limits
           storage: File
@@ -71,4 +61,3 @@ spec:
           maxBytes: 524288000
         references:
         - accel-stream
-    
