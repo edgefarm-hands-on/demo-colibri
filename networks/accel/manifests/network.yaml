@@ -1,0 +1,74 @@
+apiVersion: streams.network.edgefarm.io/v1alpha1
+kind: Network
+metadata:
+  name: accel
+  namespace: accel
+spec:
+  compositeDeletePolicy: Foreground
+  parameters:
+    users:
+    
+      - name: publish
+        limits:
+          payload: -1
+          data: -1
+          subscriptions: -1
+        permissions:
+          pub:
+            allow:
+            - *.accel
+            - $JS.API.CONSUMER.>
+            - $JS.ACK.>
+            deny: []
+            
+          sub:
+            allow:
+            - *.accel
+            deny: []
+            
+    subNetworks:
+      - name: colibri
+        limits:
+          fileStorage: 1G
+          inMemoryStorage: 100M
+        tolerations: []
+        nodeSelectorTerm:
+          matchExpressions:
+            - key: device-type-colibri
+              operator: Exists
+            
+    streams:
+    
+      - name: accel-stream
+        type: Standard
+        subNetworkRef: colibri
+        config:
+          subjects:
+          - accel
+          
+          discard: Old
+          retention: Limits
+          storage: File
+          maxConsumers: -1
+          maxMsgSize: -1
+          maxMsgs: -1
+          maxMsgsPerSubject: -1
+          maxBytes: 104857599
+        
+    
+      - name: aggregate
+        type: Aggregate
+        
+        config:
+          
+          discard: Old
+          retention: Limits
+          storage: File
+          maxConsumers: -1
+          maxMsgSize: -1
+          maxMsgs: -1
+          maxMsgsPerSubject: -1
+          maxBytes: 524288000
+        references:
+        - accel-stream
+    
