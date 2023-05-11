@@ -29,7 +29,7 @@ spec:
           fileStorage: 1G
           inMemoryStorage: 100M
         tolerations: []
-        nodeSelectorTerm:
+        nodepoolSelector:
           matchExpressions:
             - key: device-type-colibri
               operator: Exists
