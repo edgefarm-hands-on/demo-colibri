@@ -1,0 +1,54 @@
+apiVersion: streams.network.edgefarm.io/v1alpha1
+kind: Network
+metadata:
+  name: foo2
+  namespace: accel
+spec:
+  compositeDeletePolicy: Foreground
+  parameters:
+    users:
+    
+      - name: foo
+        limits:
+          payload: -1
+          data: -1
+          subscriptions: -1
+        permissions:
+          pub:
+            allow: []
+            deny: []
+            
+          sub:
+            allow: []
+            deny: []
+            
+    subNetworks:
+      - name: foo
+        limits:
+          fileStorage: 1G
+          inMemoryStorage: 100M
+        tolerations: []
+        nodepoolSelector:
+          matchExpressions:
+            - key: "foo"
+              operator: Exists
+            
+    streams:
+    
+      - name: foo
+        type: Standard
+        
+        config:
+          subjects:
+          - "foo"
+          
+          discard: Old
+          retention: Limits
+          storage: File
+          maxConsumers: -1
+          maxMsgSize: -1
+          maxMsgs: -1
+          maxMsgsPerSubject: -1
+          maxBytes: -1
+        
+    
