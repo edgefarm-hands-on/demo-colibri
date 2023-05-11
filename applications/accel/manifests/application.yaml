@@ -10,17 +10,16 @@ spec:
         image: ghcr.io/ci4rail/edgefarm-accel-demo-edgeapp/accel-simulation:1.0.3
         nodepoolSelector:
           matchLabels:
-            "jellyfish": ""
+            jellyfish: ""
         name: accel
-        
+
         cpu: 0.25
         memory: 256Mi
-        
+
       traits:
         - type: edgefarm-network
           properties:
             network:
-              name: accel-network
+              name: accel
               subnetwork: colibri
               user: publish
-        
