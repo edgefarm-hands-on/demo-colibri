@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "test"
+  annotations:
+    'edgefarm.io/cluster': default
+  links:
+    - url: https://www.ci4rail.com
+      title: Ci4Rail Website
+      icon: backstage
+spec:
+  type: network
+  owner: default/siredmar
+  lifecycle: production
+  system: system:default/demo-colibri
