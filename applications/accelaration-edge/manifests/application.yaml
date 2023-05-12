@@ -1,0 +1,26 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: accelaration-edge
+spec:
+  components:
+    - name: accel
+      type: edgefarm-applications
+      properties:
+        image: ghcr.io/ci4rail/edgefarm-accel-demo-edgeapp/accel-simulation:1.0.2
+        nodepoolSelector:
+          matchLabels:
+            jellyfish: ""
+        name: accel
+        
+        cpu: 0.25
+        memory: 256Mi
+        
+      traits:
+        - type: edgefarm-network
+          properties:
+            network:
+              name: acceleration-network
+              subnetwork: colibri
+              user: publish
+        
