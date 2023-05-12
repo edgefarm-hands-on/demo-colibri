@@ -10,7 +10,7 @@ spec:
         image: ghcr.io/ci4rail/edgefarm-accel-demo-edgeapp/accel-simulation:1.0.2
         nodepoolSelector:
           matchLabels:
-            jellyfish: ""
+            colibri: ""
         name: accel
         
         cpu: 0.25
