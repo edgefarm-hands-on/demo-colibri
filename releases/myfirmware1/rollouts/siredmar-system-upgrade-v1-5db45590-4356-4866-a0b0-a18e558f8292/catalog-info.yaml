@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: siredmar-system-upgrade-v1-5db45590-4356-4866-a0b0-a18e558f8292
+  annotations:
+    'edgefarm.io/cluster': default
+    'edgefarm.io/release-image': siredmar/system-upgrade:v1
+  links:
+    - url: https://www.ci4rail.com
+      title: Ci4Rail Website
+      icon: backstage
+spec:
+  type: Rollout
+  owner: default/siredmar
+  lifecycle: production
+  system: system:default/demo-colibri
+  dependsOn: ['component:default/myfirmware1']
