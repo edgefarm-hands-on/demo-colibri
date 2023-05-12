@@ -1,0 +1,55 @@
+---
+apiVersion: upgrade.cattle.io/v1
+kind: Plan
+metadata:
+  name: docker-io-ci4rail-colibri-mender-v1-1-fd7757c4-08a7-41ff-93ef-a34e801de2cf
+  namespace: system-upgrade
+spec:
+  concurrency: 1
+  version: 
+  nodeSelector:
+    matchExpressions:
+      - {
+          key: kubernetes.io/hostname,
+          operator: In,
+          values: ['colibri'],
+        }
+  serviceAccountName: system-upgrade
+  drain:
+    force: false
+    disableEviction: true
+  secrets:
+    - name: mender-upgrade
+      path: /secrets/mender
+  tolerations:
+    - key: 'edgefarm.io'
+      operator: 'Exists'
+      effect: 'NoSchedule'
+  upgrade:
+    image: 'docker.io/ci4rail/colibri-mender:v1.1'
+    volumes:
+      - name: usr-share-mender
+        source: /usr/share/mender
+        destination: /usr/share/mender
+      - name: var-lib-mender
+        source: /var/lib/mender
+        destination: /var/lib/mender
+      - name: etc-mender
+        source: /etc/mender
+        destination: /etc/mender
+      - name: usr-bin-grub-mender-grubenv-print
+        source: /usr/bin/grub-mender-grubenv-print
+        destination: /usr/bin/grub-mender-grubenv-print
+      - name: usr-bin-grub-mender-grubenv-set
+        source: /usr/bin/grub-mender-grubenv-set
+        destination: /usr/bin/grub-mender-grubenv-set
+      - name: boot-efi
+        source: /boot/efi
+        destination: /boot/efi
+      - name: proc-sys-kernel-sysrq
+        source: /proc/sysrq-trigger
+        destination: /sysrq-trigger
+      - name: data-system-upgrade
+        source: /data/system-upgrade
+        destination: /data/system-upgrade
+    command: ["sh", "/secrets/mender/upgrade.sh"]
