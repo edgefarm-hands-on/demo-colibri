@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: docker-io-ci4rail-colibri-mender-v1-1-fd7757c4-08a7-41ff-93ef-a34e801de2cf
+  name: docker-io-ci4rail-colibri-mender-v1-1-fd7757c4
   annotations:
     'edgefarm.io/cluster': default
     'edgefarm.io/release-image': docker.io/ci4rail/colibri-mender:v1.1
