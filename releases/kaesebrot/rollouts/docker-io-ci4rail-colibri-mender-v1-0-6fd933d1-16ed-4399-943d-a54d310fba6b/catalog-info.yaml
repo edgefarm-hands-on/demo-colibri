@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: docker-io-ci4rail-colibri-mender-v1-0-6fd933d1-16ed-4399-943d-a54d310fba6b
+  annotations:
+    'edgefarm.io/cluster': default
+    'edgefarm.io/release-image': docker.io/ci4rail/colibri-mender:v1.0
+  links:
+    - url: https://www.ci4rail.com
+      title: Ci4Rail Website
+      icon: backstage
+spec:
+  type: Rollout
+  owner: default/MBeer2605
+  lifecycle: production
+  system: system:default/demo-colibri
+  dependsOn: ['component:default/kaesebrot']
