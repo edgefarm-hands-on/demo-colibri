@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: kasebrot2
+  annotations:
+    'edgefarm.io/cluster': default
+    'edgefarm.io/release-image': 'docker.io/ci4rail/colibri-mender:v1.1'
+spec:
+  type: Release
+  owner: default/MBeer2605
+  lifecycle: production
+  system: system:default/demo-colibri
