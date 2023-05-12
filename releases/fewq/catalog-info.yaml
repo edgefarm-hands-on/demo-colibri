@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: fewq
+  annotations:
+    'edgefarm.io/cluster': default
+    'edgefarm.io/release-image': 'busybox:v1'
+spec:
+  type: Release
+  owner: default/matmah
+  lifecycle: production
+  system: system:default/demo-colibri
