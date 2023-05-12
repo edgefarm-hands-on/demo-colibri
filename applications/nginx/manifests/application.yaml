@@ -12,15 +12,5 @@ spec:
           matchLabels:
             colibri: ""
         name: nginx
-        
         cpu: 0.25
         memory: 256Mi
-        
-      traits:
-        - type: edgefarm-network
-          properties:
-            network:
-              name: a
-              subnetwork: a
-              user: a
-        
