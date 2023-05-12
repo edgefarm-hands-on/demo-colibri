@@ -1,17 +1,17 @@
 apiVersion: core.oam.dev/v1beta1
 kind: Application
 metadata:
-  name: accel
+  name: accel-app
 spec:
   components:
-    - name: accel
+    - name: accel-app
       type: edgefarm-applications
       properties:
         image: ghcr.io/ci4rail/edgefarm-accel-demo-edgeapp/accel-simulation:1.0.3
         nodepoolSelector:
           matchLabels:
             jellyfish: ""
-        name: accel
+        name: accel-app
 
         cpu: 0.25
         memory: 256Mi
