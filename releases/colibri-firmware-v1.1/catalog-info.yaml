@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: colibri-firmware-v1.1
+  annotations:
+    'edgefarm.io/cluster': default
+    'edgefarm.io/release-image': 'ci4rail/colibri-mender:v1.1'
+spec:
+  type: Release
+  owner: default/KlausPopp
+  lifecycle: production
+  system: system:default/demo-colibri
