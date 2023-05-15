@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: clownfish
+  annotations:
+    'edgefarm.io/cluster': default
+spec:
+  type: Device
+  owner: default/siredmar
+  lifecycle: production
+  system: system:default/demo-colibri
