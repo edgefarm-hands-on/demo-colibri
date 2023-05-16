@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Node
+metadata:
+  labels:
+    kubernetes.io/hostname: sparrow
+    openyurt.io/is-edge-worker: "true"
+    apps.openyurt.io/desired-nodepool: sparrow
+  name: sparrow
+spec:
+  taints:
+    - effect: NoSchedule
+      key: edgefarm.io
+---
+apiVersion: apps.openyurt.io/v1beta1
+kind: NodePool
+metadata:
+  name: sparrow
+  labels:
+    sparrow: ""
+    monitor.edgefarm.io/metrics: default
+spec:
+  selector:
+    matchLabels:
+      apps.openyurt.io/nodepool: sparrow
+  type: Edge
