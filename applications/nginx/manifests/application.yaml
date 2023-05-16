@@ -10,7 +10,7 @@ spec:
         image: nginx:latest
         nodepoolSelector:
           matchLabels:
-            jellyfish: ""
+            sparrow: ""
         name: nginx
         cpu: 0.25
         memory: 256Mi
