@@ -7,7 +7,7 @@ spec:
     - name: acceleration
       type: edgefarm-applications
       properties:
-        image: ghcr.io/ci4rail/edgefarm-accel-demo-edgeapp/accel-fft:1.0.2
+        image: ghcr.io/ci4rail/edgefarm-accel-demo-edgeapp/accel-samples:1.0.2
         nodepoolSelector:
           matchLabels:
             colibri: ""
