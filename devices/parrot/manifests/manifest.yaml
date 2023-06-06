@@ -17,7 +17,7 @@ metadata:
   name: parrot
   labels:
     parrot: ""
-    monitor.edgefarm.io/metrics: default
+    #monitor.edgefarm.io/metrics: default
 spec:
   selector:
     matchLabels:
