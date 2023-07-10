@@ -1,0 +1,31 @@
+apiVersion: upgrade.cattle.io/v1
+kind: Plan
+metadata:
+  name: colibri-mender-v1-0-1f596
+  namespace: system-upgrade
+spec:
+  concurrency: 1
+  nodeSelector:
+    matchExpressions:
+      - {
+          key: kubernetes.io/hostname,
+          operator: In,
+          values: ['colibri'],
+        }
+  serviceAccountName: system-upgrade
+  drain:
+    force: false
+    disableEviction: true
+  version: "v1.0"
+  tolerations:
+    - key: 'edgefarm.io'
+      operator: 'Exists'
+      effect: 'NoSchedule'
+  upgrade:
+    image: ci4rail/colibri-mender:v1.0
+    command: ['/entrypoint.sh']
+    args: ['/tmp/concurrent', 'bar', '/tmp/successfile']
+    volumes:
+      - name: tmp
+        source: /tmp
+        destination: /tmp
