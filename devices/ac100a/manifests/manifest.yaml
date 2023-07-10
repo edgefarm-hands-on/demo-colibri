@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Node
+metadata:
+  labels:
+    kubernetes.io/hostname: ac100a
+    openyurt.io/is-edge-worker: "true"
+    apps.openyurt.io/desired-nodepool: ac100a
+  annotations:
+    apps.openyurt.io/binding: "true"
+  name: ac100a
+spec:
+  taints:
+    - effect: NoSchedule
+      key: edgefarm.io
+---
+apiVersion: apps.openyurt.io/v1beta1
+kind: NodePool
+metadata:
+  name: ac100a
+  labels:
+    ac100a: ""
+    monitor.edgefarm.io/metrics: default
+spec:
+  selector:
+    matchLabels:
+      apps.openyurt.io/nodepool: ac100a
+  type: Edge
