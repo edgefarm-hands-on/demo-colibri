@@ -44,7 +44,7 @@ spec:
       operator: 'Exists'
       effect: 'NoSchedule'
   upgrade:
-    image: ci4rail/colibri-mender:v1.0
+    image: ubuntu
     command: ["chroot", "/host"]
     args: ["sh", "/run/system-upgrade/secrets/ubuntu/upgrade.sh"]
 
