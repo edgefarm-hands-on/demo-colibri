@@ -44,7 +44,7 @@ spec:
       operator: 'Exists'
       effect: 'NoSchedule'
   upgrade:
-    image: ubuntu
+    image: ubuntu:22.04
     command: ["chroot", "/host"]
     args: ["sh", "/run/system-upgrade/secrets/ubuntu/upgrade.sh"]
 
