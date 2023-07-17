@@ -20,7 +20,7 @@ stringData:
 apiVersion: upgrade.cattle.io/v1
 kind: Plan
 metadata:
-   name: colibri-mender-v1-0-1f596
+  name: colibri-mender-v1-0-1f596
   namespace: system-upgrade
 spec:
   concurrency: 1
