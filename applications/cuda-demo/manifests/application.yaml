@@ -16,11 +16,4 @@ spec:
         cpu: 0.25
         memory: 256Mi
         
-      traits:
-        - type: edgefarm-network
-          properties:
-            network:
-              name: acceleration-network
-              subnetwork: colibri
-              user: publish
         
