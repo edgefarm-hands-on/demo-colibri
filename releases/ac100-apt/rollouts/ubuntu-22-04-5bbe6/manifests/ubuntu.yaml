@@ -21,7 +21,7 @@ apiVersion: upgrade.cattle.io/v1
 kind: Plan
 metadata:
    name: ubuntu-22-04-5bbe6
-  namespace: system-upgrade
+   namespace: system-upgrade
 spec:
   concurrency: 1
   nodeSelector:
