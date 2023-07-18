@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ac100-apt
+  annotations:
+    'edgefarm.io/cluster': default
+    'edgefarm.io/release-image': 'ubuntu:22.04'
+spec:
+  type: Release
+  owner: default/KlausPopp
+  lifecycle: production
+  system: system:default/demo-colibri
