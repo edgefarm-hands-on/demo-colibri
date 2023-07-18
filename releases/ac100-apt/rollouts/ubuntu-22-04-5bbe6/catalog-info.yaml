@@ -11,7 +11,7 @@ metadata:
       icon: backstage
 spec:
   type: Rollout
-  owner: default/KlausPopp
+  owner: default/batthebee
   lifecycle: production
   system: system:default/demo-colibri
   dependsOn: ['component:default/ac100-apt']
