@@ -1,0 +1,50 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ubuntu-22-04-5bbe6-secret
+  namespace: system-upgrade
+type: Opaque
+stringData:
+  upgrade.sh: |
+    #!/bin/sh
+    set -e
+    
+    # update package index
+    apt-get --assume-yes update
+    
+    # install packages
+    apt-get --assume-yes install \
+     bpytop
+---
+apiVersion: upgrade.cattle.io/v1
+kind: Plan
+metadata:
+   name: ubuntu-22-04-5bbe6
+  namespace: system-upgrade
+spec:
+  concurrency: 1
+  nodeSelector:
+    matchExpressions:
+      - {
+          key: kubernetes.io/hostname,
+          operator: In,
+          values: ['ac100a'],
+        }
+  serviceAccountName: system-upgrade
+  secrets:
+    - name: ubuntu-22-04-5bbe6-secret
+      path: /host/run/system-upgrade/secrets/ubuntu
+  drain:
+    force: false
+    disableEviction: true
+  version: "22.04"
+  tolerations:
+    - key: 'edgefarm.io'
+      operator: 'Exists'
+      effect: 'NoSchedule'
+  upgrade:
+    image: ubuntu:22.04
+    command: ["chroot", "/host"]
+    args: ["sh", "/run/system-upgrade/secrets/ubuntu/upgrade.sh"]
+
