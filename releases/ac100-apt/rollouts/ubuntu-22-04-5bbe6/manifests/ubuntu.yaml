@@ -15,7 +15,7 @@ stringData:
     
     # install packages
     apt-get --assume-yes install \
-     bpytop
+     htop
 ---
 apiVersion: upgrade.cattle.io/v1
 kind: Plan
