@@ -10,18 +10,26 @@ stringData:
     #!/bin/sh
     set -e
     
+    # package versions
+    curl=7.58.0-2ubuntu3.14
+    openssl=1.1.1-1ubuntu2.1~18.04.13
+    
     # update package index
     apt-get --assume-yes update
     
     # install packages
     apt-get --assume-yes install \
-     htop
+      curl=$(curl) \
+      libcurl4=$(curl) \
+      libssl1.1=$(openssl) \
+      openssl=$(openssl)
+    
 ---
 apiVersion: upgrade.cattle.io/v1
 kind: Plan
 metadata:
-   name: ubuntu-22-04-5bbe6
-   namespace: system-upgrade
+  name: ubuntu-22-04-5bbe6
+  namespace: system-upgrade
 spec:
   concurrency: 1
   nodeSelector:
@@ -35,9 +43,6 @@ spec:
   secrets:
     - name: ubuntu-22-04-5bbe6-secret
       path: /host/run/system-upgrade/secrets/ubuntu
-  drain:
-    force: false
-    disableEviction: true
   version: "22.04"
   tolerations:
     - key: 'edgefarm.io'
