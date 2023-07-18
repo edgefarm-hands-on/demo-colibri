@@ -10,7 +10,7 @@ spec:
         image: ghcr.io/ci4rail/edgefarm-accel-demo-edgeapp/accel-samples:1.1.0
         nodepoolSelector:
           matchLabels:
-            colibri: ""
+            ac100a: ""
         name: acceleration
         
         cpu: 0.25
