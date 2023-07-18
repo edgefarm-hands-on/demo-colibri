@@ -34,8 +34,8 @@ spec:
         tolerations: []
         nodepoolSelector:
           matchExpressions:
-            - key: "colibri"
-              operator: Exists
+            #- key: "colibri"
+            #  operator: Exists
             - key: "ac100a"
               operator: Exists
             
