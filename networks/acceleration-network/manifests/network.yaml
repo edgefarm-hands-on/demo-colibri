@@ -36,6 +36,8 @@ spec:
           matchExpressions:
             - key: "colibri"
               operator: Exists
+            - key: "ac100a"
+              operator: Exists
             
     streams:
     
