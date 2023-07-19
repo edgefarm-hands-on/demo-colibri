@@ -1,0 +1,18 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: test
+spec:
+  components:
+    - name: test
+      type: edgefarm-applications
+      properties:
+        image: nginx
+        nodepoolSelector:
+          matchLabels:
+            ac100a: ""
+        name: test
+        cpu: 0.25
+        memory: 256Mi
+      traits:
+        []
