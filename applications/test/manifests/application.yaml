@@ -4,15 +4,20 @@ metadata:
   name: test
 spec:
   components:
-    - name: test
+    - name: asdf
       type: edgefarm-applications
       properties:
-        image: nginx
+        image: sdf
         nodepoolSelector:
           matchLabels:
-            ac100a: ""
-        name: test
+            sdf: ""
+        name: asdf
         cpu: 0.25
         memory: 256Mi
       traits:
-        []
+        - type: edgefarm-network
+          properties:
+            network:
+              name: sd
+              subnetwork: d
+              user: d
