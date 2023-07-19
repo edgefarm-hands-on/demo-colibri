@@ -1,0 +1,27 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: d
+spec:
+  components:
+    - name: d
+      type: edgefarm-applications
+      properties:
+        image: d
+        nodepoolSelector:
+          matchLabels:
+            d: ""
+        name: d
+        
+        cpu: 0.25
+        memory: 256Mi
+        
+      traits:
+        - type: edgefarm-network
+          properties:
+            network:
+              name: d
+              subnetwork: d
+              user: d
+        
+        
