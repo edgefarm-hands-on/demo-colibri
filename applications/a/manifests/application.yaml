@@ -1,0 +1,22 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: a
+spec:
+  components:
+    - name: a
+      type: edgefarm-applications
+      properties:
+        image: a
+        nodepoolSelector:
+          matchLabels:
+            a: ""
+        name: a
+        
+        cpu: 0.25
+        memory: 256Mi
+        
+      traits:
+        
+        
+        []
