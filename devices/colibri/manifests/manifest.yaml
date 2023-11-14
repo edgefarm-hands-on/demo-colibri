@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Node
+metadata:
+  labels:
+    # todo: kubernetes.io/arch: arm64 amd64 
+    kubernetes.io/os: linux
+    kubernetes.io/hostname: colibri
+    openyurt.io/is-edge-worker: "true"
+    apps.openyurt.io/desired-nodepool: colibri
+  annotations:
+    apps.openyurt.io/binding: "true"
+  name: colibri
+spec:
+  taints:
+    - effect: NoSchedule
+      key: edgefarm.io
+---
+apiVersion: apps.openyurt.io/v1beta1
+kind: NodePool
+metadata:
+  name: colibri
+  labels:
+    colibri: ""
+    monitor.edgefarm.io/metrics: default
+spec:
+  selector:
+    matchLabels:
+      apps.openyurt.io/nodepool: colibri
+  type: Edge
